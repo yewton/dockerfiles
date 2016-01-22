@@ -1,0 +1,1306 @@
+= Swagger Petstore
+
+
+[[_overview]]
+== Overview
+This is a sample server Petstore server.
+
+http://swagger.io[Learn about Swagger] or join the IRC channel `#swagger` on irc.freenode.net.
+
+For this sample, you can use the api key `special-key` to test the authorization filters
+
+
+=== Version information
+[%hardbreaks]
+_Version_ : 1.0.0
+
+
+=== Contact information
+[%hardbreaks]
+_Contact_ : apiteam@swagger.io
+
+
+=== License information
+[%hardbreaks]
+_License_ : Apache 2.0
+_License URL_ : http://www.apache.org/licenses/LICENSE-2.0.html
+_Terms of service_ : http://helloreverb.com/terms/
+
+
+=== URI scheme
+[%hardbreaks]
+_Host_ : petstore.swagger.io
+_BasePath_ : /v2
+_Schemes_ : HTTP
+
+
+
+
+[[_paths]]
+== Resources
+
+[[_pet_resource]]
+=== Pet
+
+[[_addpet]]
+==== Add a new pet to the store
+....
+POST /pets
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|*Body*|*body* +
+_optional_|Pet object that needs to be added to the store|<<_pet,Pet>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*405*|Invalid input|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+* `application/xml`
+
+
+===== Produces
+
+* `application/json`
+* `application/xml`
+
+
+===== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|*oauth2*|*<<_petstore_auth,petstore_auth>>*|write_pets,read_pets
+|===
+
+
+===== Example HTTP request
+
+====== Request path
+[source,json]
+----
+"/pets"
+----
+
+
+====== Request body
+[source,json]
+----
+{
+  "id" : 0,
+  "category" : {
+    "id" : 0,
+    "name" : "string"
+  },
+  "name" : "doggie",
+  "photoUrls" : [ "string" ],
+  "tags" : [ {
+    "id" : 0,
+    "name" : "string"
+  } ],
+  "status" : "string"
+}
+----
+
+
+[[_updatepet]]
+==== Update an existing pet
+....
+PUT /pets
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|*Body*|*body* +
+_optional_|Pet object that needs to be added to the store|<<_pet,Pet>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*400*|Invalid ID supplied|No Content
+|*404*|Pet not found|No Content
+|*405*|Validation exception|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+* `application/xml`
+
+
+===== Produces
+
+* `application/json`
+* `application/xml`
+
+
+===== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|*oauth2*|*<<_petstore_auth,petstore_auth>>*|write_pets,read_pets
+|===
+
+
+===== Example HTTP request
+
+====== Request path
+[source,json]
+----
+"/pets"
+----
+
+
+====== Request body
+[source,json]
+----
+{
+  "id" : 0,
+  "category" : {
+    "id" : 0,
+    "name" : "string"
+  },
+  "name" : "doggie",
+  "photoUrls" : [ "string" ],
+  "tags" : [ {
+    "id" : 0,
+    "name" : "string"
+  } ],
+  "status" : "string"
+}
+----
+
+
+[[_findpetsbystatus]]
+==== Finds Pets by status
+....
+GET /pets/findByStatus
+....
+
+
+===== Description
+Multiple status values can be provided with comma seperated strings
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|*Query*|*status* +
+_optional_|Status values that need to be considered for filter|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*200*|successful operation|< <<_pet,Pet>> > array
+|*400*|Invalid status value|No Content
+|===
+
+
+===== Produces
+
+* `application/json`
+* `application/xml`
+
+
+===== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|*oauth2*|*<<_petstore_auth,petstore_auth>>*|write_pets,read_pets
+|===
+
+
+===== Example HTTP request
+
+====== Request path
+[source,json]
+----
+"/pets/findByStatus"
+----
+
+
+====== Request query
+[source,json]
+----
+{
+  "status" : "string"
+}
+----
+
+
+===== Example HTTP response
+
+====== Response 200
+[source,json]
+----
+"array"
+----
+
+
+[[_findpetsbytags]]
+==== Finds Pets by tags
+....
+GET /pets/findByTags
+....
+
+
+===== Description
+Muliple tags can be provided with comma seperated strings. Use tag1, tag2, tag3 for testing.
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|*Query*|*tags* +
+_optional_|Tags to filter by|< string > array(multi)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*200*|successful operation|< <<_pet,Pet>> > array
+|*400*|Invalid tag value|No Content
+|===
+
+
+===== Produces
+
+* `application/json`
+* `application/xml`
+
+
+===== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|*oauth2*|*<<_petstore_auth,petstore_auth>>*|write_pets,read_pets
+|===
+
+
+===== Example HTTP request
+
+====== Request path
+[source,json]
+----
+"/pets/findByTags"
+----
+
+
+====== Request query
+[source,json]
+----
+{
+  "tags" : "string"
+}
+----
+
+
+===== Example HTTP response
+
+====== Response 200
+[source,json]
+----
+"array"
+----
+
+
+[[_updatepetwithform]]
+==== Updates a pet in the store with form data
+....
+POST /pets/{petId}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|*Path*|*petId* +
+_required_|ID of pet that needs to be updated|string
+|*FormData*|*name* +
+_required_|Updated name of the pet|string
+|*FormData*|*status* +
+_required_|Updated status of the pet|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*405*|Invalid input|No Content
+|===
+
+
+===== Consumes
+
+* `application/x-www-form-urlencoded`
+
+
+===== Produces
+
+* `application/json`
+* `application/xml`
+
+
+===== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|*oauth2*|*<<_petstore_auth,petstore_auth>>*|write_pets,read_pets
+|===
+
+
+===== Example HTTP request
+
+====== Request path
+[source,json]
+----
+"/pets/string"
+----
+
+
+====== Request formData
+[source,json]
+----
+"string"
+----
+
+
+[[_getpetbyid]]
+==== Find pet by ID
+....
+GET /pets/{petId}
+....
+
+
+===== Description
+Returns a pet when ID &lt; 10. ID &gt; 10 or nonintegers will simulate API error conditions
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|*Path*|*petId* +
+_required_|ID of pet that needs to be fetched|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*200*|successful operation|<<_pet,Pet>>
+|*400*|Invalid ID supplied|No Content
+|*404*|Pet not found|No Content
+|===
+
+
+===== Produces
+
+* `application/json`
+* `application/xml`
+
+
+===== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|*apiKey*|*<<_api_key,api_key>>*|
+|*oauth2*|*<<_petstore_auth,petstore_auth>>*|write_pets,read_pets
+|===
+
+
+===== Example HTTP request
+
+====== Request path
+[source,json]
+----
+"/pets/0"
+----
+
+
+===== Example HTTP response
+
+====== Response 200
+[source,json]
+----
+{
+  "id" : 0,
+  "category" : {
+    "id" : 0,
+    "name" : "string"
+  },
+  "name" : "doggie",
+  "photoUrls" : [ "string" ],
+  "tags" : [ {
+    "id" : 0,
+    "name" : "string"
+  } ],
+  "status" : "string"
+}
+----
+
+
+[[_deletepet]]
+==== Deletes a pet
+....
+DELETE /pets/{petId}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|*Header*|*api_key* +
+_required_||string
+|*Path*|*petId* +
+_required_|Pet id to delete|integer(int64)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*400*|Invalid pet value|No Content
+|===
+
+
+===== Produces
+
+* `application/json`
+* `application/xml`
+
+
+===== Security
+
+[options="header", cols=".^3,.^4,.^13"]
+|===
+|Type|Name|Scopes
+|*oauth2*|*<<_petstore_auth,petstore_auth>>*|write_pets,read_pets
+|===
+
+
+===== Example HTTP request
+
+====== Request path
+[source,json]
+----
+"/pets/0"
+----
+
+
+====== Request header
+[source,json]
+----
+"string"
+----
+
+
+[[_store_resource]]
+=== Store
+
+[[_placeorder]]
+==== Place an order for a pet
+....
+POST /stores/order
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|*Body*|*body* +
+_optional_|order placed for purchasing the pet|<<_order,Order>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*200*|successful operation|<<_order,Order>>
+|*400*|Invalid Order|No Content
+|===
+
+
+===== Produces
+
+* `application/json`
+* `application/xml`
+
+
+===== Example HTTP request
+
+====== Request path
+[source,json]
+----
+"/stores/order"
+----
+
+
+====== Request body
+[source,json]
+----
+{
+  "id" : 0,
+  "petId" : 0,
+  "quantity" : 0,
+  "shipDate" : "string",
+  "status" : "string",
+  "complete" : true
+}
+----
+
+
+===== Example HTTP response
+
+====== Response 200
+[source,json]
+----
+{
+  "id" : 0,
+  "petId" : 0,
+  "quantity" : 0,
+  "shipDate" : "string",
+  "status" : "string",
+  "complete" : true
+}
+----
+
+
+[[_getorderbyid]]
+==== Find purchase order by ID
+....
+GET /stores/order/{orderId}
+....
+
+
+===== Description
+For valid response try integer IDs with value &lt;= 5 or &gt; 10. Other values will generated exceptions
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|*Path*|*orderId* +
+_required_|ID of pet that needs to be fetched|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*200*|successful operation|<<_order,Order>>
+|*400*|Invalid ID supplied|No Content
+|*404*|Order not found|No Content
+|===
+
+
+===== Produces
+
+* `application/json`
+* `application/xml`
+
+
+===== Example HTTP request
+
+====== Request path
+[source,json]
+----
+"/stores/order/string"
+----
+
+
+===== Example HTTP response
+
+====== Response 200
+[source,json]
+----
+{
+  "id" : 0,
+  "petId" : 0,
+  "quantity" : 0,
+  "shipDate" : "string",
+  "status" : "string",
+  "complete" : true
+}
+----
+
+
+[[_deleteorder]]
+==== Delete purchase order by ID
+....
+DELETE /stores/order/{orderId}
+....
+
+
+===== Description
+For valid response try integer IDs with value &lt; 1000. Anything above 1000 or nonintegers will generate API errors
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|*Path*|*orderId* +
+_required_|ID of the order that needs to be deleted|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*400*|Invalid ID supplied|No Content
+|*404*|Order not found|No Content
+|===
+
+
+===== Produces
+
+* `application/json`
+* `application/xml`
+
+
+===== Example HTTP request
+
+====== Request path
+[source,json]
+----
+"/stores/order/string"
+----
+
+
+[[_user_resource]]
+=== User
+
+[[_createuser]]
+==== Create user
+....
+POST /users
+....
+
+
+===== Description
+This can only be done by the logged in user.
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|*Body*|*body* +
+_optional_|Created user object|<<_user,User>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*default*|successful operation|No Content
+|===
+
+
+===== Produces
+
+* `application/json`
+* `application/xml`
+
+
+===== Example HTTP request
+
+====== Request path
+[source,json]
+----
+"/users"
+----
+
+
+====== Request body
+[source,json]
+----
+{
+  "id" : 0,
+  "username" : "string",
+  "firstName" : "string",
+  "lastName" : "string",
+  "email" : "string",
+  "password" : "string",
+  "phone" : "string",
+  "userStatus" : 0
+}
+----
+
+
+[[_createuserswitharrayinput]]
+==== Creates list of users with given input array
+....
+POST /users/createWithArray
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|*Body*|*body* +
+_optional_|List of user object|< <<_user,User>> > array
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*default*|successful operation|No Content
+|===
+
+
+===== Produces
+
+* `application/json`
+* `application/xml`
+
+
+===== Example HTTP request
+
+====== Request path
+[source,json]
+----
+"/users/createWithArray"
+----
+
+
+====== Request body
+[source,json]
+----
+[ {
+  "id" : 0,
+  "username" : "string",
+  "firstName" : "string",
+  "lastName" : "string",
+  "email" : "string",
+  "password" : "string",
+  "phone" : "string",
+  "userStatus" : 0
+} ]
+----
+
+
+[[_createuserswithlistinput]]
+==== Creates list of users with given input array
+....
+POST /users/createWithList
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|*Body*|*body* +
+_optional_|List of user object|< <<_user,User>> > array
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*default*|successful operation|No Content
+|===
+
+
+===== Produces
+
+* `application/json`
+* `application/xml`
+
+
+===== Example HTTP request
+
+====== Request path
+[source,json]
+----
+"/users/createWithList"
+----
+
+
+====== Request body
+[source,json]
+----
+[ {
+  "id" : 0,
+  "username" : "string",
+  "firstName" : "string",
+  "lastName" : "string",
+  "email" : "string",
+  "password" : "string",
+  "phone" : "string",
+  "userStatus" : 0
+} ]
+----
+
+
+[[_loginuser]]
+==== Logs user into the system
+....
+GET /users/login
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|*Query*|*password* +
+_optional_|The password for login in clear text|string
+|*Query*|*username* +
+_optional_|The user name for login|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*200*|successful operation|string
+|*400*|Invalid username/password supplied|No Content
+|===
+
+
+===== Produces
+
+* `application/json`
+* `application/xml`
+
+
+===== Example HTTP request
+
+====== Request path
+[source,json]
+----
+"/users/login"
+----
+
+
+====== Request query
+[source,json]
+----
+{
+  "password" : "string",
+  "username" : "string"
+}
+----
+
+
+===== Example HTTP response
+
+====== Response 200
+[source,json]
+----
+"string"
+----
+
+
+[[_logoutuser]]
+==== Logs out current logged in user session
+....
+GET /users/logout
+....
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*default*|successful operation|No Content
+|===
+
+
+===== Produces
+
+* `application/json`
+* `application/xml`
+
+
+===== Example HTTP request
+
+====== Request path
+[source,json]
+----
+"/users/logout"
+----
+
+
+[[_getuserbyname]]
+==== Get user by user name
+....
+GET /users/{username}
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|*Path*|*username* +
+_required_|The name that needs to be fetched. Use user1 for testing.|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*200*|successful operation|<<_user,User>>
+|*400*|Invalid username supplied|No Content
+|*404*|User not found|No Content
+|===
+
+
+===== Produces
+
+* `application/json`
+* `application/xml`
+
+
+===== Example HTTP request
+
+====== Request path
+[source,json]
+----
+"/users/string"
+----
+
+
+===== Example HTTP response
+
+====== Response 200
+[source,json]
+----
+{
+  "id" : 0,
+  "username" : "string",
+  "firstName" : "string",
+  "lastName" : "string",
+  "email" : "string",
+  "password" : "string",
+  "phone" : "string",
+  "userStatus" : 0
+}
+----
+
+
+[[_updateuser]]
+==== Updated user
+....
+PUT /users/{username}
+....
+
+
+===== Description
+This can only be done by the logged in user.
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|*Path*|*username* +
+_required_|name that need to be deleted|string
+|*Body*|*body* +
+_optional_|Updated user object|<<_user,User>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*400*|Invalid user supplied|No Content
+|*404*|User not found|No Content
+|===
+
+
+===== Produces
+
+* `application/json`
+* `application/xml`
+
+
+===== Example HTTP request
+
+====== Request path
+[source,json]
+----
+"/users/string"
+----
+
+
+====== Request body
+[source,json]
+----
+{
+  "id" : 0,
+  "username" : "string",
+  "firstName" : "string",
+  "lastName" : "string",
+  "email" : "string",
+  "password" : "string",
+  "phone" : "string",
+  "userStatus" : 0
+}
+----
+
+
+[[_deleteuser]]
+==== Delete user
+....
+DELETE /users/{username}
+....
+
+
+===== Description
+This can only be done by the logged in user.
+
+
+===== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|*Path*|*username* +
+_required_|The name that needs to be deleted|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|*400*|Invalid username supplied|No Content
+|*404*|User not found|No Content
+|===
+
+
+===== Produces
+
+* `application/json`
+* `application/xml`
+
+
+===== Example HTTP request
+
+====== Request path
+[source,json]
+----
+"/users/string"
+----
+
+
+
+
+[[_definitions]]
+== Definitions
+
+[[_category]]
+=== Category
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*id* +
+_optional_|*Example* : `0`|integer(int64)
+|*name* +
+_optional_|*Example* : `"string"`|string
+|===
+
+
+[[_order]]
+=== Order
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*complete* +
+_optional_|*Example* : `true`|boolean
+|*id* +
+_optional_|*Example* : `0`|integer(int64)
+|*petId* +
+_optional_|*Example* : `0`|integer(int64)
+|*quantity* +
+_optional_|*Example* : `0`|integer(int32)
+|*shipDate* +
+_optional_|*Example* : `"string"`|string(date-time)
+|*status* +
+_optional_|Order Status +
+*Example* : `"string"`|string
+|===
+
+
+[[_pet]]
+=== Pet
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*category* +
+_optional_|*Example* : `"<<_category>>"`|<<_category,Category>>
+|*id* +
+_optional_|*Example* : `0`|integer(int64)
+|*name* +
+_required_|*Example* : `"doggie"`|string
+|*photoUrls* +
+_required_|*Example* : `[ "string" ]`|< string > array
+|*status* +
+_optional_|pet status in the store +
+*Example* : `"string"`|string
+|*tags* +
+_optional_|*Example* : `[ "<<_tag>>" ]`|< <<_tag,Tag>> > array
+|===
+
+
+[[_tag]]
+=== Tag
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*id* +
+_optional_|*Example* : `0`|integer(int64)
+|*name* +
+_optional_|*Example* : `"string"`|string
+|===
+
+
+[[_user]]
+=== User
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*email* +
+_optional_|*Example* : `"string"`|string
+|*firstName* +
+_optional_|*Example* : `"string"`|string
+|*id* +
+_optional_|*Example* : `0`|integer(int64)
+|*lastName* +
+_optional_|*Example* : `"string"`|string
+|*password* +
+_optional_|*Example* : `"string"`|string
+|*phone* +
+_optional_|*Example* : `"string"`|string
+|*userStatus* +
+_optional_|User Status +
+*Example* : `0`|integer(int32)
+|*username* +
+_optional_|*Example* : `"string"`|string
+|===
+
+
+
+
+[[_securityscheme]]
+== Security
+
+[[_petstore_auth]]
+=== petstore_auth
+[%hardbreaks]
+_Type_ : oauth2
+_Flow_ : implicit
+_Token URL_ : http://petstore.swagger.io/api/oauth/dialog
+
+
+[options="header", cols=".^3,.^17"]
+|===
+|Name|Description
+|write_pets|modify pets in your account
+|read_pets|read your pets
+|===
+
+
+[[_api_key]]
+=== api_key
+[%hardbreaks]
+_Type_ : apiKey
+_Name_ : api_key
+_In_ : HEADER
+
+
+
