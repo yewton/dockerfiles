@@ -1,0 +1,1 @@
+* * * * * root /clean.sh >> /var/log/i-hate-diskfull.log 2>&1
