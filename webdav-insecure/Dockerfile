@@ -16,6 +16,7 @@ ENV APACHE_RUN_DIR /var/run/apache2
 
 RUN mkdir -p /var/lock/apache2; chown www-data /var/lock/apache2
 RUN mkdir -p /var/webdav; chown www-data /var/webdav
+RUN mv /etc/apache2/mods-available/headers.load  /etc/apache2/mods-enabled/
 
 ADD webdav.conf /etc/apache2/sites-available/webdav.conf
 RUN a2ensite webdav
