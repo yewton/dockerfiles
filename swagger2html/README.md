@@ -10,5 +10,5 @@ Put `swagger.yaml` to current directory and run following commands:
 
 ```
 docker pull yewton/swagger2html
-docker run --rm -v $(pwd):/in -v $(pwd):/out yewton/swagger2html
+docker run --rm -v $(pwd):/in -v $(pwd)/api-doc:/out yewton/swagger2html
 ```
