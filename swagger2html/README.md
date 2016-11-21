@@ -3,6 +3,11 @@ swagger2html
 
 Generate HTML document from swagger spec using [Swagger2Markup](https://github.com/Swagger2Markup/swagger2markup) and [Asciidoctor](http://asciidoctor.org/).
 
+Example
+-------
+
+https://www.yewton.net/dockerfiles/swagger2html/swagger.html
+
 Usage
 ------
 
